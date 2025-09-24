@@ -60,6 +60,17 @@ func main() {
 A collection of all functions and further examples can be found in
 the [documentation](https://pkg.go.dev/github.com/vorlif/humanize).
 
+### Migrate from `spreak`
+
+To migrate from the spreak/humanize package, simply adjust the import path:
+
+```diff
+import (
+-	"github.com/vorlif/spreak/humanize"
++	"github.com/vorlif/humanize"
+)
+```
+
 ### Add translations
 
 If you would like to add a translation or add a new language, **do not do so in this repository**.
