@@ -2,13 +2,12 @@
 
 The `humanize` package provides a collection of functions to convert Go data structures into a human-readable format.
 It was widely adapted from the [Django project](https://github.com/django/django) and also uses the Django translations.
-It should therefore be noted that the translations are under
-the [Django's 3-clause BSD license](https://raw.githubusercontent.com/django/django/main/LICENSE).
+
+More than 90 languages are supported. You can find a list of all supported languages under [locale/](locale)
 
 ### Usage
 
 To use the `humanize` package, you first need to load the languages you want to use.
-You can find a list of all supported languages under [locale/](locale)
 
 ```go
 package main
@@ -74,6 +73,26 @@ fmt.Println(h.NaturalTime(t))
 // Output: 5分钟以后
 ```
 
+#### Language-specific time output
+
+```go
+collection := humanize.MustNew(humanize.WithLocale(es.New(), be.New(), de.New()))
+
+now := time.Now()
+
+h := collection.CreateHumanizer(language.English)
+fmt.Println(h.FormatTime(now, humanize.DateTimeFormat))
+// May 15, 2022, 6 p.m.
+
+h := collection.CreateHumanizer(language.MustParse("be"))
+fmt.Println(h.FormatTime(now, humanize.DateTimeFormat))
+// траўня 15, 2022, 6 папаўдні
+
+h := collection.CreateHumanizer(language.German)
+fmt.Println(h.FormatTime(now, humanize.DateTimeFormat))
+// 15. Mai 2022 18:00
+```
+
 #### Intword
 
 ```go
@@ -127,5 +146,5 @@ For all non-translation related errors, this repository must be used.
 ## License
 
 humanize is available under the MIT license. See the [LICENSE](LICENSE) file for more info.
-The translations of the `humanize` packages are licensed
+The translations of the `locale` packages are licensed
 under [Django's BSD license](https://raw.githubusercontent.com/django/django/main/LICENSE).
