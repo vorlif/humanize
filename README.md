@@ -57,6 +57,49 @@ func main() {
 }
 ```
 
+### Examples
+
+#### Relative time
+
+```go
+t := time.Now().Add(5 * time.Minute)
+collection := humanize.MustNew(humanize.WithLocale(es.New(), zhHans.New()))
+
+h := collection.CreateHumanizer(language.English)
+fmt.Println(h.NaturalTime(t))
+// Output: 5 minutes from now
+
+h = collection.CreateHumanizer(language.SimplifiedChinese)
+fmt.Println(h.NaturalTime(t))
+// Output: 5分钟以后
+```
+
+#### Intword
+
+```go
+collection := humanize.MustNew(humanize.WithLocale(es.New()))
+
+h := collection.CreateHumanizer(language.English)
+fmt.Println(h.Intword(1_000_000_000))
+// Output: 1.0 billion
+
+h = collection.CreateHumanizer(language.Spanish)
+fmt.Println(h.Intword(1_000_000_000))
+// Output: 1,0 millardo
+```
+
+#### Filesize
+
+```go
+collection := humanize.MustNew(humanize.WithLocale(de.New()))
+
+h := collection.CreateHumanizer(language.English)
+fmt.Println(h.FilesizeFormat(1024 * 1024 * 1024))
+// Output: 1 GB
+```
+
+#### More examples
+
 A collection of all functions and further examples can be found in
 the [documentation](https://pkg.go.dev/github.com/vorlif/humanize).
 
