@@ -110,7 +110,9 @@ To migrate from the spreak/humanize package, simply adjust the import path:
 ```diff
 import (
 -	"github.com/vorlif/spreak/humanize"
+-	"github.com/vorlif/spreak/humanize/locale/ar"
 +	"github.com/vorlif/humanize"
++	"github.com/vorlif/humanize/locale/ar"
 )
 ```
 
